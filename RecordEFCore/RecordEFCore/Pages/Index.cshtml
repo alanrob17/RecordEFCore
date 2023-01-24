@@ -13,18 +13,24 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">First name</th>
-                <th scope="col">Last name</th>
+                <th scope="col">Record name</th>
+                <th scope="col">Recorded</th>
+                <th scope="col">Field</th>
+                <th scope="col">Media</th>
+                <th scope="col">Rating</th>
             </tr>
         </thead>
         <tbody>
 
-            @foreach (var artist in Model.Artists)
+            @foreach (var record in Model.Records)
             {
                 <tr>
-                    <th scope="row">@artist.ArtistId</th>
-                    <td>@artist.FirstName</td>
-                    <td>@artist.LastName</td>
+                    <th scope="row">@record.RecordId</th>
+                    <td>@record.Name</td>
+                    <td>@record.Recorded</td>
+                    <td>@record.Field</td>
+                    <td>@record.Media</td>
+                    <td>@record.Rating</td>
                 </tr>
             }
 

@@ -8,7 +8,7 @@ namespace RecordEFCore.Pages
     public class IndexModel : PageModel
     {
         [BindProperty]
-        public List<Artist>? Artists { get; set; }
+        public List<Record>? Records { get; set; }
 
         private readonly ILogger<IndexModel> _logger;
 
@@ -19,8 +19,8 @@ namespace RecordEFCore.Pages
 
         public void OnGet()
         {
-            var db = new _dal.ArtistData();
-            Artists = db.GetArtistNames();
+            var db = new _dal.RecordData();
+            Records = db.GetRecordNames();
         }
     }
 }
