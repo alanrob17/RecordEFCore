@@ -12,7 +12,7 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">#</th>
+                <th scope="col">Artist</th>
                 <th scope="col">Record name</th>
                 <th scope="col">Recorded</th>
                 <th scope="col">Field</th>
@@ -22,15 +22,15 @@
         </thead>
         <tbody>
 
-            @foreach (var record in Model.Records)
+            @foreach (var ar in Model.ArtistRecords)
             {
                 <tr>
-                    <th scope="row">@record.RecordId</th>
-                    <td>@record.Name</td>
-                    <td>@record.Recorded</td>
-                    <td>@record.Field</td>
-                    <td>@record.Media</td>
-                    <td>@record.Rating</td>
+                    <th scope="row">@ar.Artist</th>
+                    <td>@ar.Name</td>
+                    <td>@ar.Recorded</td>
+                    <td>@ar.Field</td>
+                    <td>@ar.Media</td>
+                    <td>@ar.Rating</td>
                 </tr>
             }
 

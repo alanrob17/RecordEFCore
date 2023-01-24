@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace RecordEFCore
 {
     public class Program
@@ -8,6 +10,9 @@ namespace RecordEFCore
 
             // Add services to the container.
             builder.Services.AddRazorPages();
+
+            builder.Services.AddDbContext<RecordDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("RecordDB")));
 
             var app = builder.Build();
 
