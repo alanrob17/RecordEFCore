@@ -16,6 +16,9 @@
 # Mono auto generated files
 mono_crash.*
 
+# Hide database connection strings
+appsettings.json
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
@@ -260,6 +263,7 @@ UpgradeLog*.XML
 UpgradeLog*.htm
 ServiceFabricBackup/
 *.rptproj.bak
+*.bak
 
 # SQL Server files
 *.mdf
