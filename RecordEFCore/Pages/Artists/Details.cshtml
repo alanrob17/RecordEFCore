@@ -33,7 +33,7 @@
             @Html.DisplayNameFor(model => model.Artist.Biography)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Artist.Biography)
+            @Html.Raw(Model.Artist.Biography)
         </dd>
     </dl>
 </div>

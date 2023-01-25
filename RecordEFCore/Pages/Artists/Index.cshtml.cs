@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -20,14 +21,6 @@ namespace RecordEFCore.Pages.Artists
 
         public IList<Artist> Artist { get;set; } = default!;
 
-        //public async Task OnGetAsync()
-        //{
-        //    if (_context.Artists != null)
-        //    {
-        //        Artist = await _context.Artists.ToListAsync();
-        //    }
-        //}
-
         public async Task OnGetAsync()
         {
             if (_context.Artists != null)
@@ -38,7 +31,16 @@ namespace RecordEFCore.Pages.Artists
                 {
                     if (!string.IsNullOrEmpty(artist.Biography))
                     {
-                        artist.Biography = artist.Biography.Substring(0, Math.Min(30, artist.Biography.Length)) + "...";
+                        //artist.Biography = artist.Biography.Substring(0, Math.Min(30, artist.Biography.Length)) + "...";
+
+                        if (!string.IsNullOrEmpty(artist.Biography) && artist.Biography.Length > 80)
+                        {
+                            string text = artist.Biography;
+                            text = Regex.Replace(text, "<.*?>", String.Empty);
+                            text = string.Concat("<span>", text.AsSpan(0, 80), "&hellip;</span>");
+                            artist.Biography = text;
+                        }
+
                     }
                 }
             }
