@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{artistId:int?}"
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model IndexModel
 @{
@@ -6,8 +6,8 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Record List</h1>
+    <h3>@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")</h3>
 </div>
 <div>
     <table class="table table-striped">
@@ -26,7 +26,7 @@
             @foreach (var ar in Model.ArtistRecords)
             {
                 <tr>
-                    <td>@ar.Artist</td>
+                    <td><a href="./@ar.ArtistId">@ar.Artist</a></td>
                     <td>@ar.Name</td>
                     <td>@ar.Recorded</td>
                     <td>@ar.Field</td>
@@ -34,7 +34,9 @@
                     <td>@ar.Rating</td>
                 </tr>
             }
-
         </tbody>
     </table>
+    <div class="form-group">
+        <input type="submit" value="Back &#10132;" class="btn btn-sm btn-primary" onclick='location.href="./"' />
+    </div>
 </div>

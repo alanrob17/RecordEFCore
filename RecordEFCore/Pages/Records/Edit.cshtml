@@ -1,0 +1,100 @@
+﻿@page
+@model RecordEFCore.Pages.Records.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Record</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Record.RecordId" />
+            <div class="form-group">
+                <label asp-for="Record.ArtistId" class="control-label"></label>
+                <select asp-for="Record.ArtistId" class="form-control" asp-items="ViewBag.ArtistId"></select>
+                <span asp-validation-for="Record.ArtistId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Record.Name" class="control-label"></label>
+                <input asp-for="Record.Name" class="form-control" />
+                <span asp-validation-for="Record.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Record.Field" class="control-label"></label>
+                <input asp-for="Record.Field" class="form-control" />
+                <span asp-validation-for="Record.Field" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Record.Recorded" class="control-label"></label>
+                <input asp-for="Record.Recorded" class="form-control" />
+                <span asp-validation-for="Record.Recorded" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Record.Label" class="control-label"></label>
+                <input asp-for="Record.Label" class="form-control" />
+                <span asp-validation-for="Record.Label" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Record.Pressing" class="control-label"></label>
+                <input asp-for="Record.Pressing" class="form-control" />
+                <span asp-validation-for="Record.Pressing" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Record.Rating" class="control-label"></label>
+                <input asp-for="Record.Rating" class="form-control" />
+                <span asp-validation-for="Record.Rating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Record.Discs" class="control-label"></label>
+                <input asp-for="Record.Discs" class="form-control" />
+                <span asp-validation-for="Record.Discs" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Record.Media" class="control-label"></label>
+                <input asp-for="Record.Media" class="form-control" />
+                <span asp-validation-for="Record.Media" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Record.Bought" class="control-label"></label>
+                <input asp-for="Record.Bought" class="form-control" />
+                <span asp-validation-for="Record.Bought" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Record.Cost" class="control-label"></label>
+                <input asp-for="Record.Cost" class="form-control" />
+                <span asp-validation-for="Record.Cost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Record.CoverName" class="control-label"></label>
+                <input asp-for="Record.CoverName" class="form-control" />
+                <span asp-validation-for="Record.CoverName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Record.Review" class="control-label"></label>
+                <input asp-for="Record.Review" class="form-control" />
+                <span asp-validation-for="Record.Review" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Record.FreeDbId" class="control-label"></label>
+                <input asp-for="Record.FreeDbId" class="form-control" />
+                <span asp-validation-for="Record.FreeDbId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

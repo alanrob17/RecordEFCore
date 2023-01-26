@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using RecordEFCore.Data;
 using RecordEFCore.Models;
 
@@ -7,28 +8,30 @@ namespace RecordEFCore.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly RecordDbContext context;
+        private readonly RecordDbContext _context;
 
-        public IndexModel(RecordDbContext _context)
+        public IndexModel(RecordDbContext context)
         {
-            context = _context;
+            _context = context;
         }
 
         [BindProperty]
         public List<ArtistRecord> ArtistRecords { get; set; }
 
-        public void OnGet()
+        public async Task OnGetAsync(int? artistId)
         {
-
-            // Records = context.Records.OrderBy(r => r.RecordId).ThenBy(r => r.Recorded).ToList();
-            var records = context.Records.Join(context.Artists, record => record.ArtistId, artist => artist.ArtistId, (record, artist) => new { record, artist }).ToList();
+            var records = await _context.Records
+                .Join(_context.Artists, record => record.ArtistId, artist => artist.ArtistId, (record, artist) => new { record, artist })
+                .Where(record => record.artist.ArtistId == artistId || artistId == null)
+                .ToListAsync();
 
             var list = new List<ArtistRecord>();
 
             foreach (var ar in records)
             {
-                ArtistRecord artist = new()
+                var artist = new ArtistRecord
                 {
+                    ArtistId = ar.artist.ArtistId,
                     Artist = ar.artist.Name,
                     Name = ar.record.Name,
                     Recorded = ar.record.Recorded,
@@ -46,6 +49,7 @@ namespace RecordEFCore.Pages
 
     public class ArtistRecord
     {
+        public int ArtistId { get; set; }
         public string? Artist { get; set; }
         public string? Name { get; set; }
         public int Recorded { get; set; }
