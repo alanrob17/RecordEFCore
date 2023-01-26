@@ -6,8 +6,8 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Record List</h1>
-    <h3>@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")</h3>
+    <h4 class="display-4">Record List</h4>
+    <h5>@DateTime.Now.ToString("dd/MM/yyyy HH:mm")</h5>
 </div>
 <div>
     <table class="table table-striped">
@@ -30,7 +30,7 @@
                     <td>@ar.Name</td>
                     <td>@ar.Recorded</td>
                     <td>@ar.Field</td>
-                    <td>@ar.Media</td>
+                    <td>(@ar.Media)</td>
                     <td>@ar.Rating</td>
                 </tr>
             }
