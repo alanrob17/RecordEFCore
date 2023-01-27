@@ -1,6 +1,5 @@
 ﻿@page
 @model RecordEFCore.Pages.Records.DetailsModel
-
 @{
     ViewData["Title"] = "Details";
 }
@@ -11,6 +10,12 @@
     <h4>Record</h4>
     <hr />
     <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Record.Artist)
+        </dt>
+        <dd class="col-sm-10">
+            <strong>@Html.DisplayFor(model => model.Record.Artist.Name)</strong>
+        </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Record.Name)
         </dt>
@@ -69,31 +74,13 @@
             @Html.DisplayNameFor(model => model.Record.Cost)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Record.Cost)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Record.CoverName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Record.CoverName)
+            $@Html.DisplayFor(model => model.Record.Cost)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Record.Review)
         </dt>
         <dd class="col-sm-10">
             @Html.Raw(Model.Record.Review)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Record.FreeDbId)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Record.FreeDbId)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Record.Artist)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Record.Artist.LastName)
         </dd>
     </dl>
 </div>

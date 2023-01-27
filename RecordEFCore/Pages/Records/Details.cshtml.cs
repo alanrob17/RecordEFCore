@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System;   
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,12 +28,15 @@ namespace RecordEFCore.Pages.Records
             }
 
             var record = await _context.Records.FirstOrDefaultAsync(m => m.RecordId == id);
+
             if (record == null)
             {
                 return NotFound();
             }
             else 
             {
+                var artist = await _context.Artists.FirstOrDefaultAsync(m => m.ArtistId == record.ArtistId);
+                record.Artist.Name = artist.Name;
                 Record = record;
             }
             return Page();

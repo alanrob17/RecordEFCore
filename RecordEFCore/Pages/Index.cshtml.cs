@@ -22,8 +22,10 @@ namespace RecordEFCore.Pages
         {
             var records = await _context.Records
                 .Join(_context.Artists, record => record.ArtistId, artist => artist.ArtistId, (record, artist) => new { record, artist })
-                .Where(record => record.artist.ArtistId == artistId || artistId == null)
-                .OrderBy(record => record.artist.LastName).ThenBy(record => record.artist.FirstName)
+                .Where(r => r.artist.ArtistId == artistId || artistId == null)
+                .OrderBy(r => r.artist.LastName)
+                .ThenBy(r => r.artist.FirstName)
+                .ThenBy(r => r.record.Recorded)
                 .ToListAsync();
 
             var list = new List<ArtistRecord>();
