@@ -51,6 +51,8 @@ namespace RecordEFCore.Pages.Artists
 
             try
             {
+                Artist.Name = string.IsNullOrEmpty(Artist.FirstName) ? Artist.LastName : $"{Artist.FirstName} {Artist.LastName}"; ;
+
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)

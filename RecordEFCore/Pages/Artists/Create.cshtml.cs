@@ -35,6 +35,8 @@ namespace RecordEFCore.Pages.Artists
                 return Page();
             }
 
+            Artist.Name = string.IsNullOrEmpty(Artist.FirstName) ? Artist.LastName : $"{Artist.FirstName} {Artist.LastName}";
+
             _context.Artists.Add(Artist);
             await _context.SaveChangesAsync();
 

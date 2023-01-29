@@ -25,14 +25,12 @@ namespace RecordEFCore.Pages.Artists
         {
             if (_context.Artists != null)
             {
-                Artist = await _context.Artists.ToListAsync();
+                Artist = await _context.Artists.OrderBy(a => a.LastName).ThenBy(a => a.FirstName).ToListAsync();
 
                 foreach (var artist in Artist)
                 {
                     if (!string.IsNullOrEmpty(artist.Biography))
                     {
-                        //artist.Biography = artist.Biography.Substring(0, Math.Min(30, artist.Biography.Length)) + "...";
-
                         if (!string.IsNullOrEmpty(artist.Biography) && artist.Biography.Length > 80)
                         {
                             string text = artist.Biography;
