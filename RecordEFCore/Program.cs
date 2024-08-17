@@ -1,3 +1,4 @@
+
 using Microsoft.EntityFrameworkCore;
 
 namespace RecordEFCore
@@ -25,6 +26,9 @@ namespace RecordEFCore
             }
 
             app.UseHttpsRedirection();
+
+            // app.UseHttpLogging();
+
             app.UseStaticFiles();
 
             app.UseRouting();
