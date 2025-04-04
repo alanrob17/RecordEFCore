@@ -1,42 +1,10 @@
-﻿@page "{artistId:int?}"
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@page
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h4 class="display-4">Record List</h4>
+<div class="text-center mb-xxl-4">
+    <h4 class="display-4">Record Database</h4>
     <h5>@DateTime.Now.ToString("dd/MM/yyyy HH:mm")</h5>
-</div>
-<div>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">Artist</th>
-                <th scope="col">Record name</th>
-                 <th scope="col">Recorded</th>
-                <th scope="col">Field</th>
-                <th scope="col">Media</th>
-                <th scope="col">Rating</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            @foreach (var ar in Model.ArtistRecords)
-            {
-                <tr>
-                    <td><a href="./@ar.ArtistId">@ar.Artist</a></td>
-                    <td>@ar.Name</td>
-                     <td>@ar.Recorded</td>
-                    <td>@ar.Field</td>
-                    <td>(@ar.Media)</td>
-                    <td>@ar.Rating</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-    <div class="form-group">
-        <input type="submit" value="Back &#10132;" class="btn btn-sm btn-primary" onclick='location.href="./"' />
-    </div>
 </div>

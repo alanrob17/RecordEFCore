@@ -19,13 +19,24 @@ namespace RecordEFCore.Pages.Artists
             _context = context;
         }
 
-        public IList<Artist> Artist { get;set; } = default!;
+        public PaginatedList<Artist> Artist { get; set; } = default!;
 
-        public async Task OnGetAsync()
+        [BindProperty(SupportsGet = true)]
+        public int CurrentPage { get; set; } = 1;
+        public int Count { get; set; }
+        public int PageSize { get; set; } = 15;
+        public int TotalPages => (int)Math.Ceiling(decimal.Divide(Count, PageSize));
+
+        public async Task OnGetAsync(int? pageIndex)
         {
             if (_context.Artists != null)
             {
-                Artist = await _context.Artists.OrderBy(a => a.LastName).ThenBy(a => a.FirstName).ToListAsync();
+                CurrentPage = pageIndex ?? 1;
+
+                var artistQuery = _context.Artists.OrderBy(a => a.LastName).ThenBy(a => a.FirstName).AsQueryable();
+
+                Count = await artistQuery.CountAsync();
+                Artist = await PaginatedList<Artist>.CreateAsync(artistQuery, CurrentPage, PageSize);
 
                 foreach (var artist in Artist)
                 {
@@ -38,7 +49,6 @@ namespace RecordEFCore.Pages.Artists
                             text = string.Concat("<span>", text.AsSpan(0, 80), "&hellip;</span>");
                             artist.Biography = text;
                         }
-
                     }
                 }
             }
